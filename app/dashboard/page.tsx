@@ -1,9 +1,9 @@
 "use client";
-import {DynamicContextProvider} from "@dynamic-labs/sdk-react-core";
+import StudentProfile from "@/components/profile/StudentProfile";
 import {EthereumWalletConnectors} from "@dynamic-labs/ethereum";
-import Auth from "@/components/auth/Auth";
+import {DynamicContextProvider} from "@dynamic-labs/sdk-react-core";
 
-export default function Home() {
+export default function StudentDashboard() {
     return (
         <DynamicContextProvider
             settings={{
@@ -12,7 +12,10 @@ export default function Home() {
                 walletConnectors: [EthereumWalletConnectors],
             }}
         >
-            <Auth/>
+            <div className="p-4 w-3/4 mx-auto">
+                <h2>Profile</h2>
+                <StudentProfile/>
+            </div>
         </DynamicContextProvider>
     );
-}
+};
