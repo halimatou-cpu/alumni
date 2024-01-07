@@ -1,9 +1,8 @@
 import './styles/globals.css'
 import type {Metadata} from 'next'
-import {Inter} from 'next/font/google'
 import Header from "@/components/header/Header";
-
-const inter = Inter({subsets: ['latin']})
+import React from "react";
+import {MyDynamicContextProvider} from "@/context/MyDynamicContextProvider";
 
 export const metadata: Metadata = {
     title: 'Alumni ESGI',
@@ -14,13 +13,9 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
     return (
         <html lang="fr">
         <body>
-        <div>
-            <Header/>
-        </div>
-        <div>
-            {children}
-        </div>
+        <Header/>
+        <MyDynamicContextProvider>{children}</MyDynamicContextProvider>
         </body>
         </html>
-    )
+    );
 }

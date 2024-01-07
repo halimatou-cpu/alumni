@@ -1,6 +1,6 @@
 "use client";
 import React, {useState} from 'react';
-import {createSchool, getSchoolName} from "@/utils/contractInteraction";
+import {createSchool, getSchoolName} from "@/services/contractInteraction";
 
 function SchoolCreation() {
     const [schoolName, setSchoolName] = useState('');

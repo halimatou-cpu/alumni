@@ -26,7 +26,7 @@ export default function Auth() {
             setConnector(primaryWallet.connector);
             getSigner();
         }
-    }, [primaryWallet, connector]);
+    }, [primaryWallet, connector, router]);
 
     const onButtonClick = () => {
         router.push("/dashboard");

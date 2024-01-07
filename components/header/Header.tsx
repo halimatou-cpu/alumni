@@ -22,7 +22,7 @@ export default function Header() {
             {/* Second line */}
             <nav className="p-2 flex justify-between items-center">
                 <div className="flex gap-5">
-                    <Link href="/public" className="hover:text-esgiColor no-underline">
+                    <Link href="/" className="hover:text-esgiColor no-underline">
                         Accueil
                     </Link>
                     <Link href="/dashboard" className="hover:text-esgiColor no-underline">
