@@ -1,16 +1,10 @@
-import { ethers } from 'ethers';
+import {ethers} from 'ethers';
 
-const contractAddress = 'ContractAddress';
+import {contractABI, contractAddress, privateKey} from '@/environement/environement';
 
-const contractABI = [
+const provider = new ethers.providers.JsonRpcProvider('WEB3_PROVIDER_URL');
 
-];
-
-//const provider = new ethers.providers.JsonRpcProvider('WEB3_PROVIDER_URL');
-
-//const privateKey = 'PrivateKey';
-
-//const contract = new ethers.Contract(contractAddress, contractABI, new ethers.Wallet(privateKey, provider));
+const contract = new ethers.Contract(contractAddress, contractABI, provider);
 
 export async function createSchool(name: string): Promise<void> {
     try {
