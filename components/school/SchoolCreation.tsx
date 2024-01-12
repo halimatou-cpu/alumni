@@ -1,4 +1,4 @@
-"use client";
+//"use client";
 import {createSchool} from '@/services/contractInteraction';
 import {useDynamicContext} from '@dynamic-labs/sdk-react-core';
 // import React, {useState} from 'react';
