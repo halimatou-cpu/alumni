@@ -1,79 +1,77 @@
-import {ethers} from 'ethers';
+import { contractAddress } from "@/environment/environment";
 
-import {contractABI, contractAddress, privateKey} from '@/environement/environement';
+import Web3 from 'web3';
+import { Diploma } from '../objets/diploma';
+import { abi } from "./Abi";
 
-const provider = new ethers.providers.JsonRpcProvider('WEB3_PROVIDER_URL');
+const web3 = new Web3(new Web3.providers.HttpProvider(process.env.NEXT_PUBLIC_PROVIDER_URL ?? ""));
+const contract = new web3.eth.Contract(abi, contractAddress);
 
-const contract = new ethers.Contract(contractAddress, contractABI, provider);
-
-export async function createSchool(name: string): Promise<void> {
+export async function createSchool(name: string, account: string): Promise<void> {
     try {
-        //const tx = await contract.createSchool(name);
-        //await tx.wait();
-        console.log(name);
-        console.log('School created successfully!');
+        const response = await contract.methods.createSchool(name).call({
+            from: account,
+        });
     } catch (error) {
-        console.error('Error creating school:', error);
+        console.error('Error creating school: ', error);
+    }
+}
+
+export async function getSchools(): Promise<Array<string>> {
+    try {
+        const schools = await contract.methods.getSchools().call() as Array<string>;
+        return schools;
+    } catch (error) {
+        console.error('Error getting schools: ', error);
+        return [];
     }
 }
 
 export async function getSchoolName(schoolAddress: string): Promise<string> {
     try {
-        //const schoolName = await contract.getSchoolName(schoolAddress);
-        //console.log('School name:', schoolName);
-        //return schoolName;
-        return '';
+        const schoolName = await contract.methods.getSchoolName(schoolAddress).call() as string;
+        return schoolName;
     } catch (error) {
-        console.error('Error getting school name:', error);
-        return '';
+        console.error('Error getting school name: ', error);
+        return "";
     }
 }
 
-export async function createDiploma(name: string, student: string, hash: string): Promise<void> {
+export async function getSchoolDiplomas(schoolAddress: string) {
     try {
-        //const tx = await contract.createDiploma(name, student, hash);
-        //await tx.wait();
-        console.log(name);
-        console.log(student);
-        console.log(hash);
-        console.log('Diploma created successfully!');
+        const diplomas = await contract.methods.getDiplomasBySchool(schoolAddress).call() as Array<any>;
+        return diplomas.map((diploma: any) => new Diploma(diploma.diplomeTitle, diploma.studentAddress, diploma.diplomaHash, diploma.date));
     } catch (error) {
-        console.error('Error creating diploma:', error);
-    }
-}
-
-export async function getDiplomasByStudent(student: string): Promise<string[]> {
-    try {
-        //const diplomas = await contract.getDiplomasByStudent(student);
-        //console.log('Diplomas for student:', diplomas);
-        //return diplomas;
-        return [];
-    } catch (error) {
-        console.error('Error getting diplomas:', error);
+        console.error('Error getting school diplomas: ', error);
         return [];
     }
 }
 
-export async function getDiplomasBySchool(school: string): Promise<string[]> {
+export async function getMyDiplomas(account: string) {
     try {
-        //const diplomas = await contract.getDiplomasBySchool(school);
-        //console.log('Diplomas for school:', diplomas);
-        //return diplomas;
-        return [];
+        const diplomas = await contract.methods.getDiplomasByStudent(account).call({
+            from: account,
+        });
+        return diplomas.map((diploma: any) => new Diploma(diploma.diplomeTitle, diploma.studentAddress, diploma.diplomaHash, diploma.date));
     } catch (error) {
-        console.error('Error getting diplomas:', error);
+        console.error('Error getting my diplomas: ', error);
         return [];
     }
 }
 
-export async function getSchools(): Promise<string[]> {
+export async function createDiploma(diplomaDto: Diploma, account: string) {
+    console.log(" createDiploma method call : ", diplomaDto);
     try {
-        //const schools = await contract.getSchools();
-        //console.log('List of schools:', schools);
-        //return schools;
-        return [];
+        const diplomaCreationResponse = await contract.methods.createDiploma(
+            diplomaDto.diplomeTitle,
+            diplomaDto.studentAddress,
+            diplomaDto.diplomaHash
+        ).call({
+            from: account,
+        });
+
+        console.log(" createDiploma method call result : ", diplomaCreationResponse);
     } catch (error) {
-        console.error('Error getting schools:', error);
-        return [];
+        console.error('Error creating diploma: ', error);
     }
 }

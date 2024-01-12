@@ -1,22 +1,27 @@
 "use client";
-import React, {useState} from 'react';
-import {createSchool, getSchoolName} from "@/services/contractInteraction";
+import { createSchool } from '@/services/contractInteraction';
+import { useDynamicContext } from '@dynamic-labs/sdk-react-core';
+// import React, {useState} from 'react';
+import {useState} from 'react';
+// import {createSchool, getSchoolName} from "@/services/contractInteraction";
 
 function SchoolCreation() {
     const [schoolName, setSchoolName] = useState('');
     const [schoolAddress, setSchoolAddress] = useState('');
     const [createdSchoolName, setCreatedSchoolName] = useState('');
+    const { primaryWallet, rpcProviders } = useDynamicContext();
 
     const handleFormSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
         if (schoolName) {
             try {
-                await createSchool(schoolName);
-                console.log('School created successfully!');
+                // await createSchool(schoolName, primaryWallet?.address ?? "", rpcProviders);
+                await createSchool(schoolName, primaryWallet?.address ?? "");
+                // console.log('School created successfully in form!');
 
-                const name = await getSchoolName(schoolAddress);
-                setCreatedSchoolName(name);
+                // const name = await getSchoolName(schoolAddress);
+                // setCreatedSchoolName(name);
             } catch (error) {
                 console.error('Error creating school:', error);
             }

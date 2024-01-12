@@ -1,17 +1,19 @@
 "use client";
-import React from 'react';
-import usePrimaryWalletAddress from "@/utils/DynamicHook"
+// import React from 'react';
 import useDynamicUser from "@/utils/UserDynamicHook";
+// import { useDynamicContext } from "@dynamic-labs/sdk-react-core";
 
 function StudentProfile() {
 
-    const primaryWallet = usePrimaryWalletAddress();
+    // const primaryWallet = usePrimaryWalletAddress();
+    // const { primaryWallet } = useDynamicContext();
     const userInfo = useDynamicUser();
+    // console.log("********* wallet address: ", primaryWallet);
 
     return (
         <div className="flex items-center justify-center">
             <div className="bg-white p-8 rounded shadow-md">
-                <h1 className="text-2xl font-bold mb-4">Student Profile</h1>
+                <h1 className="text-2xl font-bold mb-4">Profile</h1>
                 <div className="mb-4">
                     <p className="text-gray-700">
                         <span className="font-bold">Prénom:</span> {userInfo?.firstName}

@@ -1,5 +1,6 @@
 "use client";
-import React, {useEffect, useState} from 'react';
+// import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import PostContainer from "@/components/post/PostContainer";
 import {Post} from "@/objets/post";
 

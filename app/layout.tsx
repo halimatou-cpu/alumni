@@ -1,7 +1,7 @@
 import './styles/globals.css'
 import type {Metadata} from 'next'
 import Header from "@/components/header/Header";
-import React from "react";
+// import React from "react";
 import {MyDynamicContextProvider} from "@/context/MyDynamicContextProvider";
 
 export const metadata: Metadata = {

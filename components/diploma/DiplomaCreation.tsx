@@ -1,5 +1,6 @@
 "use client";
-import React, {useState} from 'react';
+// import React, {useState} from 'react';
+import {useState} from 'react';
 import {Diploma} from "@/objets/diploma";
 import * as crypto from 'crypto';
 
@@ -105,7 +106,7 @@ function DiplomaCreation() {
                     />
                 </div>
 
-                <button type="submit" className="bg-blue-500 text-white p-2 rounded hover:bg-blue-700">Create Diploma
+                <button type="submit" onClick={() => console.log("submitting diploma creation form")} className="bg-blue-500 text-white p-2 rounded hover:bg-blue-700">Create Diploma
                 </button>
             </form>
         </div>

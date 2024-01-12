@@ -6,6 +6,12 @@ https://ui.shadcn.com/docs/installation/next
 
 ## Getting Started
 
+Copy the `.env.example` file to `.env.local` and fill in the environment variables.
+
+```bash
+cp .env.example .env.local
+```
+
 First, run the development server:
 
 ```bash
