@@ -52,7 +52,7 @@ export async function getMyDiplomas(account: string) {
         const diplomas = await contract.methods.getDiplomasByStudent(account).call({
             from: account,
         });
-        return diplomas.map((diploma: any) => new Diploma(diploma.diplomeTitle, diploma.studentAddress, diploma.diplomaHash, diploma.date));
+        return diplomas.map((diploma: any) => new Diploma(diploma.diplomeTitle, diploma.studentAddress, account, diploma.diplomaHash, diploma.date));
     } catch (error) {
         console.error('Error getting my diplomas: ', error);
         return [];

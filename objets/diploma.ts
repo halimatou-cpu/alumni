@@ -12,11 +12,13 @@ export class Diploma {
     constructor(
         public diplomeTitle: string,
         public studentAddress: string,
+        public schoolAddress: string,
         public diplomaHash: string,
         public date?: string,
     ) {
         this.diplomeTitle = diplomeTitle;
         this.studentAddress = studentAddress;
+        this.schoolAddress = schoolAddress;
         this.diplomaHash = diplomaHash;
         this.date = date;
      }

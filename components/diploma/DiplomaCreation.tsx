@@ -7,9 +7,14 @@ import * as crypto from 'crypto';
 function DiplomaCreation() {
 
     const [formData, setFormData] = useState<Diploma>({
-        school: '',
-        student: '',
+        // school: '',
+        // student: '',
+        // diplomaHash: '',
+        // date: '',
+        diplomeTitle: '',
         diplomaHash: '',
+        schoolAddress: '',
+        studentAddress: '',
         date: '',
     });
 
@@ -32,7 +37,7 @@ function DiplomaCreation() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        if (formData.student) {
+        if (formData.studentAddress) {
 
         }
 
@@ -65,7 +70,7 @@ function DiplomaCreation() {
                         type="text"
                         id="school"
                         name="school"
-                        value={formData.school}
+                        value={formData.schoolAddress}
                         onChange={handleChange}
                         className="border-2 border-gray-300 p-2 w-full"
                     />
@@ -77,7 +82,7 @@ function DiplomaCreation() {
                         type="text"
                         id="student"
                         name="student"
-                        value={formData.student}
+                        value={formData.studentAddress}
                         onChange={handleChange}
                         className="border-2 border-gray-300 p-2 w-full"
                     />
