@@ -4,21 +4,25 @@ import {useDynamicUser, usePrimaryWalletAddress} from "@/utils/UserDynamicHook";
 import {getMyDiplomas} from "@/services/contractInteraction";
 import {Diploma} from "@/objets/diploma";
 import {useEffect, useState} from "react";
+import { useDynamicContext } from "@dynamic-labs/sdk-react-core";
 // import { useDynamicContext } from "@dynamic-labs/sdk-react-core";
 
 function StudentProfile() {
 
-    const primaryWallet = usePrimaryWalletAddress();
+    // const primaryWallet = usePrimaryWalletAddress();
     //const { primaryWallet } = useDynamicContext();
+    const {primaryWallet } = useDynamicContext();
+
     const userInfo = useDynamicUser();
     // console.log("********* wallet address: ", primaryWallet);
 
-    const [diplomas, setDiplomas] = useState<Diploma[]>([]);
+    const [diplomas, setDiplomas] = useState<any[]>([]);
 
     useEffect(() => {
         async function fetchDiplomas() {
             try {
-                const myDiplomas = await getMyDiplomas(primaryWallet);
+                const myDiplomas = await getMyDiplomas(primaryWallet?.address ?? "0x1d8e02E367a074dA453A58F22DA1f86BbF4f5CE5");
+                console.log("********* myDiplomas: ", myDiplomas);
                 setDiplomas(myDiplomas);
             } catch (error) {
                 console.error('Error fetching diplomas: ', error);
@@ -53,8 +57,8 @@ function StudentProfile() {
                     <ul>
                         {diplomas.map((diploma, index) => (
                             <li key={index} className="mb-4">
-                                <h3 className="text-lg font-bold">{diploma.diplomeTitle}</h3>
-                                <p>Date d'obtention: {diploma.date}</p>
+                                <h3 className="text-lg font-bold"> Titre: {diploma[0]}</h3>
+                                <p>Date d'obtention: {diploma[4].toString()}</p>
                             </li>
                         ))}
                     </ul>
