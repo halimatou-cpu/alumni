@@ -1,4 +1,4 @@
-"use client";
+//"use client";
 import {DynamicWidget, useDynamicContext, WalletConnector} from "@dynamic-labs/sdk-react-core";
 import {useRouter} from "next/navigation";
 import {useEffect, useState} from "react";

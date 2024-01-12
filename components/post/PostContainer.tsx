@@ -1,4 +1,4 @@
-"use client";
+//"use client";
 // import React from 'react';
 
 const PostContainer: React.FC<{ title: string; content: string }> = ({ title, content }) => {

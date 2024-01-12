@@ -1,4 +1,4 @@
-"use client";
+//"use client";
 import React, {useEffect, useState} from 'react';
 import {School} from "@/objets/school";
 import {getSchoolName, getSchools} from "@/services/contractInteraction";
