@@ -1,15 +1,16 @@
 "use client";
-import { createSchool } from '@/services/contractInteraction';
-import { useDynamicContext } from '@dynamic-labs/sdk-react-core';
+import {createSchool} from '@/services/contractInteraction';
+import {useDynamicContext} from '@dynamic-labs/sdk-react-core';
 // import React, {useState} from 'react';
 import {useState} from 'react';
+
 // import {createSchool, getSchoolName} from "@/services/contractInteraction";
 
 function SchoolCreation() {
     const [schoolName, setSchoolName] = useState('');
     const [schoolAddress, setSchoolAddress] = useState('');
     const [createdSchoolName, setCreatedSchoolName] = useState('');
-    const { primaryWallet, rpcProviders } = useDynamicContext();
+    const {primaryWallet, rpcProviders} = useDynamicContext();
 
     const handleFormSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -18,7 +19,7 @@ function SchoolCreation() {
             try {
                 // await createSchool(schoolName, primaryWallet?.address ?? "", rpcProviders);
                 await createSchool(schoolName, primaryWallet?.address ?? "");
-                // console.log('School created successfully in form!');
+                // console.log('Page created successfully in form!');
 
                 // const name = await getSchoolName(schoolAddress);
                 // setCreatedSchoolName(name);
@@ -30,10 +31,10 @@ function SchoolCreation() {
 
     return (
         <div>
-            <h2>Create School</h2>
+            <h2 className="text-2xl font-bold mb-4">Création d'une école</h2>
             <form onSubmit={handleFormSubmit} className="max-w-sm mx-auto mt-8">
                 <div className="mb-4">
-                    <label htmlFor="schoolNameInput" className="block text-gray-700">School Name:</label>
+                    <label htmlFor="schoolNameInput" className="block text-gray-700">Nom de l'école:</label>
                     <input
                         type="text"
                         id="schoolNameInput"
@@ -42,17 +43,18 @@ function SchoolCreation() {
                         className="border-2 border-gray-300 p-2 w-full"
                     />
                 </div>
-                <button type="submit" className="bg-blue-500 text-white p-2 rounded hover:bg-blue-700">Create School</button>
+                <button type="submit" className="bg-blue-500 text-white p-2 rounded hover:bg-blue-700">Create School
+                </button>
             </form>
 
             {createdSchoolName && (
                 <div>
-                    <p>School created:</p>
+                    <p>Ecole crée:</p>
                     <p>{createdSchoolName}</p>
                 </div>
             )}
         </div>
     );
-};
+}
 
 export default SchoolCreation;

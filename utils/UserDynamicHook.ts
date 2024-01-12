@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react';
 import {useDynamicContext} from "@dynamic-labs/sdk-react-core";
 import {User} from "@/objets/user";
 
-export default function useDynamicUser() {
+export function useDynamicUser() {
     const { user } = useDynamicContext();
 
     const [userInfo, setUserInfo] = useState<User | undefined>();
@@ -18,6 +18,12 @@ export default function useDynamicUser() {
     }, [user]);
 
     return userInfo;
+};
+
+export function usePrimaryWalletAddress() {
+    const { primaryWallet } = useDynamicContext();
+
+    return primaryWallet?.address ?? "";
 };
 
 

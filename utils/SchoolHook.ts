@@ -20,6 +20,10 @@ export function useSchools() {
     return {schools};
 }
 
-export function isSchool(address: string, schools: String[]): boolean {
+export function isSchool(address: string | undefined, schools: String[] ): boolean {
+    if (address === null) {
+        return false;
+    }
+
     return schools.some((school) => school === address);
 }

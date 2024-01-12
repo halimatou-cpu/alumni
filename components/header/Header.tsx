@@ -26,7 +26,7 @@ export default function Header() {
                         Accueil
                     </Link>
                     <Link href="/dashboard" className="hover:text-esgiColor no-underline">
-                        Mon profile
+                        Dashboard
                     </Link>
                     <Link href="/diploma" className="hover:text-esgiColor no-underline">
                         Diplome

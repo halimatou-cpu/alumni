@@ -62,7 +62,7 @@ function DiplomaCreation() {
 
     return (
         <div>
-            <h1>Diploma Creation</h1>
+            <h2 className="text-2xl font-bold mb-4">Diploma Creation</h2>
             <form onSubmit={handleSubmit} className="max-w-sm mx-auto mt-8">
                 <div className="mb-4">
                     <label htmlFor="school" className="block text-gray-700">School:</label>
