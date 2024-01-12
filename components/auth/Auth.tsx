@@ -25,7 +25,7 @@ export default function Auth() {
             setPrimaryWalletAddress(primaryWallet.address);
             setConnector(primaryWallet.connector);
             getSigner();
-            router.push("/dashboard");
+            // router.push("/dashboard");
         }
     }, [primaryWallet, connector, router]);
 
